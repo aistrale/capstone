@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const auth = express.Router();
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -9,7 +9,7 @@ const jwtSecretKey = 'jwt-secret-key';
 
 const UserModel = require('../models/modelUser');
 
-router.post('/auth/register', async (req, res) => {
+auth.post('/auth/register', async (req, res) => {
     const password = req.body.password
     bcrypt.genSalt(saltRounds, function(err, salt) {
         bcrypt.hash(password, salt, async function(err, hash) {
@@ -23,7 +23,7 @@ router.post('/auth/register', async (req, res) => {
     })
 })
 
-router.post('/auth/login', async (req, res) => {
+auth.post('/auth/login', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
@@ -35,7 +35,7 @@ router.post('/auth/login', async (req, res) => {
                 {
                     id: userLogin.id,
                     username: userLogin.username,
-                    fullname: userLogin.fullName,
+                    fullname: userLogin.fullname,
                     email: userLogin.email
                 }, jwtSecretKey , { expiresIn: '1h' });
             return res.status(200).json(token);
@@ -47,4 +47,4 @@ router.post('/auth/login', async (req, res) => {
     }
 })
 
-module.exports = router;
+module.exports = auth;

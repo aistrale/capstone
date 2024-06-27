@@ -5,13 +5,14 @@ const JobEntryModel = require('../models/modelJobEntry');
 
 jobEntries.get('/entries', async (req, res) =>{
     try {
-        const jobEntries = await JobEntryModel.find()
+        const jobEntries = await JobEntryModel.find({user: id})
         res.status(201).send(jobEntries)
     } catch (error) {
         res.status(500).send({statusCode: 500, message: 'error', error: error.message})
     }
 })
 
+// controllo sull'id , aggiungere mw
 jobEntries.get('/entry/:entryId', async (req, res) =>{
     const { entryId } = req.params
 
@@ -22,6 +23,7 @@ jobEntries.get('/entry/:entryId', async (req, res) =>{
                 message: "job entry not found"
             })
         }
+        // if (jobentry.user  
         res.status(201).send(jobEntry)
     } catch (error) {
         res.status(500).send({statusCode: 500, message: 'error', error: error.message})
@@ -33,6 +35,7 @@ jobEntries.post('/entry', async (req, res) =>{
         jobTitle: req.body.jobTitle,
         company: req.body.company,
         jobLocation: req.body.jobLocation,
+        // user: 
     })
 
     try {
