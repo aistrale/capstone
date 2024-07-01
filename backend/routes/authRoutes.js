@@ -9,6 +9,17 @@ const jwtSecretKey = 'jwt-secret-key';
 
 const UserModel = require('../models/modelUser');
 
+const AuthMw = require('../middlewares/AuthMw');
+
+auth.get('/users', AuthMw, async (req, res) => {
+    try {
+        const allUsers = await UserModel.find()
+        res.status(201).send(allUsers)
+    } catch (error) {
+        res.status(500).send({statusCode: 500, message: 'error', error: error.message})
+    }
+})
+
 auth.post('/auth/register', async (req, res) => {
     const password = req.body.password
     bcrypt.genSalt(saltRounds, function(err, salt) {
@@ -44,6 +55,42 @@ auth.post('/auth/login', async (req, res) => {
         }
     } else {
         return res.status(400).json({message: 'Invalid Username'})
+    }
+})
+
+auth.patch('/user/:userId', async (req, res) => {
+    const { userId } = req.params
+
+    const singleUser = await UserModel.findById(userId)
+
+    try {
+    if(!singleUser) {
+        return res.status(404).send({
+            message: "user not found"
+        })
+    }
+    const updatedUser = req.body
+    const result = await UserModel.findByIdAndUpdate(userId, updatedUser, {new: true})
+    res.status(200).send(result)
+} catch (error) {
+    res.status(500).send({statusCode: 500, message: 'error', error: error.message})
+}
+})
+
+auth.delete('/user/:userId', async (req, res) =>{
+    const { userId } = req.params
+
+    try {
+        const singleUser = await UserModel.findByIdAndDelete(userId)
+        
+        if(!singleUser) {
+            return res.status(404).send({
+                message: "user not found"
+            })
+        }
+        res.status(200).send({message: "user deleted successfully"})
+    } catch (error) {
+        res.status(500).send({statusCode: 500, message: 'error', error: error.message})
     }
 })
 

@@ -33,6 +33,7 @@ const JobRequestSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
+    user: [{ type: mongoose.Schema.Types.ObjectId, ref: 'UserLogin' }]
 }, {timestamps: true, strict: true})
 
 module.exports = mongoose.model('modelJobEntry', JobRequestSchema, 'jobEntries')
