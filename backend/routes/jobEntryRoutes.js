@@ -3,7 +3,9 @@ const jobEntries = express.Router();
 
 const JobEntryModel = require('../models/modelJobEntry');
 
-jobEntries.get('/entries', async (req, res) =>{
+const AuthMw = require('../middlewares/AuthMw');
+
+jobEntries.get('/entries', AuthMw, async (req, res) =>{
     try {
         const jobEntries = await JobEntryModel.find({user: id})
         res.status(201).send(jobEntries)
@@ -12,8 +14,7 @@ jobEntries.get('/entries', async (req, res) =>{
     }
 })
 
-// controllo sull'id , aggiungere mw
-jobEntries.get('/entry/:entryId', async (req, res) =>{
+jobEntries.get('/entry/:entryId', AuthMw, async (req, res) =>{
     const { entryId } = req.params
 
     try {
@@ -30,7 +31,7 @@ jobEntries.get('/entry/:entryId', async (req, res) =>{
     }
 })
 
-jobEntries.post('/entry', async (req, res) =>{
+jobEntries.post('/entry', AuthMw, async (req, res) =>{
     const newJobEntry = new JobEntryModel({
         jobTitle: req.body.jobTitle,
         company: req.body.company,
@@ -46,7 +47,7 @@ jobEntries.post('/entry', async (req, res) =>{
     }
 })
 
-jobEntries.patch('/entry/:entryId', async (req, res) =>{
+jobEntries.patch('/entry/:entryId', AuthMw, async (req, res) =>{
     const { entryId } = req.params
 
     try {
@@ -65,7 +66,7 @@ jobEntries.patch('/entry/:entryId', async (req, res) =>{
     }
 })
 
-jobEntries.delete('/entry/:entryId', async (req, res) =>{
+jobEntries.delete('/entry/:entryId', AuthMw, async (req, res) =>{
     const { entryId } = req.params
 
     try {

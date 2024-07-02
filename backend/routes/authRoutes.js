@@ -58,7 +58,7 @@ auth.post('/auth/login', async (req, res) => {
     }
 })
 
-auth.patch('/user/:userId', async (req, res) => {
+auth.patch('/user/:userId', AuthMw, async (req, res) => {
     const { userId } = req.params
 
     const singleUser = await UserModel.findById(userId)
@@ -77,7 +77,7 @@ auth.patch('/user/:userId', async (req, res) => {
 }
 })
 
-auth.delete('/user/:userId', async (req, res) =>{
+auth.delete('/user/:userId', AuthMw, async (req, res) =>{
     const { userId } = req.params
 
     try {
