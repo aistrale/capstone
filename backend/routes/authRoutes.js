@@ -11,10 +11,9 @@ const UserModel = require('../models/modelUser');
 
 const AuthMw = require('../middlewares/AuthMw');
 
-auth.get('/users', async (req, res) => {
+auth.get('/user', AuthMw, async (req, res) => {
     try {
-        const allUsers = await UserModel.find()
-        res.status(201).send(allUsers)
+        res.status(201).send(req.user)
     } catch (error) {
         res.status(500).send({statusCode: 500, message: 'error', error: error.message})
     }
@@ -44,7 +43,7 @@ auth.post('/auth/login', async (req, res) => {
         if(login) {
             const token = jwt.sign(
                 {
-                    id: userLogin.id,
+                    _id: userLogin._id,
                     username: userLogin.username,
                     fullname: userLogin.fullname,
                     email: userLogin.email
