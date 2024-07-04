@@ -6,8 +6,8 @@ const MyNav = () => {
   return (
     <Navbar className="nav-bg">
       <Container>
-        <Navbar.Brand href="#home" className='nav-logo'>Home</Navbar.Brand>
-          <Navbar.Text className='nav-link'>Account</Navbar.Text>
+        <Nav.Link className='nav-link'>Home</Nav.Link>
+        <Nav.Link className='nav-link'>Account</Nav.Link>
       </Container>
     </Navbar>
   );

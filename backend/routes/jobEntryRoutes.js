@@ -5,9 +5,9 @@ const JobEntryModel = require('../models/modelJobEntry');
 
 const AuthMw = require('../middlewares/AuthMw');
 
-jobEntries.get('/entries', AuthMw, async (req, res) =>{
+jobEntries.get('/entries', async (req, res) =>{
     try {
-        const jobEntries = await JobEntryModel.find({user: id})
+        const jobEntries = await JobEntryModel.find(/* {user: id} */)
         res.status(201).send(jobEntries)
     } catch (error) {
         res.status(500).send({statusCode: 500, message: 'error', error: error.message})

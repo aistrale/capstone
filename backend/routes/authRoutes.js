@@ -11,7 +11,7 @@ const UserModel = require('../models/modelUser');
 
 const AuthMw = require('../middlewares/AuthMw');
 
-auth.get('/users', AuthMw, async (req, res) => {
+auth.get('/users', async (req, res) => {
     try {
         const allUsers = await UserModel.find()
         res.status(201).send(allUsers)
