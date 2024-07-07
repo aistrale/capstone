@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const jwtSecretKey = 'jwt-secret-key';
 
 const UserModel = require('../models/modelUser')
+// const JobEntryModel = entry('../models/jobEntryModel')
 
 const AuthMw = async (req, res, next) => {
 	let token = req.headers.authorization;

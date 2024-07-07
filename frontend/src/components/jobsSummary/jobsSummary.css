@@ -1,0 +1,13 @@
+:root {
+    --link-color: #F6DCAC;
+    --border-color: #01204E;
+}
+
+.card-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+    border: 1px solid var(--border-color);
+}

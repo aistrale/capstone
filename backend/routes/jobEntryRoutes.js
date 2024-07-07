@@ -31,12 +31,12 @@ jobEntries.get('/entry/:entryId', AuthMw, async (req, res) =>{
     }
 })
 
-jobEntries.post('/entry', AuthMw, async (req, res) =>{
+jobEntries.post('/entry', /* AuthMw, */ async (req, res) =>{
     const newJobEntry = new JobEntryModel({
         jobTitle: req.body.jobTitle,
         company: req.body.company,
         jobLocation: req.body.jobLocation,
-        // user: 
+        // user: ?
     })
 
     try {

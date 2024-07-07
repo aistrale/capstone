@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
+import { AuthContext } from './modules/AuthContext';
 
 import MyFooter from './components/myFooter/MyFooter'
 
@@ -8,8 +10,12 @@ import JobEntryPage from './pages/jobEntryPage/JobEntryPage';
 
 
 const App = () => {
+
+  const [AuthUser, setAuthUser] = useState('')
+
   return (
     <>
+    <AuthContext.Provider value={[AuthUser, setAuthUser]}>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Homepage />} />
@@ -18,6 +24,7 @@ const App = () => {
         </Routes>
       </BrowserRouter>
       <MyFooter />
+      </AuthContext.Provider>
     </>
   );
 }

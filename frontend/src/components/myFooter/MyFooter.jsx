@@ -6,7 +6,7 @@ const MyFooter = () => {
     return (
         <Container fluid>
             <Row>
-                <Col className='footer-bg'>
+                <Col className='footer-bg position-fixed bottom-0'>
                     <p className='footer-logo text-center m-0'>&#169; 2024 Elena</p>
                 </Col>
             </Row>

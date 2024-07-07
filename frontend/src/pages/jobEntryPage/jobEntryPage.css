@@ -1,0 +1,17 @@
+:root {
+    --link-color: #F6DCAC;
+    --border-color: #01204E;
+}
+
+.entry-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+    border: 1px solid var(--border-color);
+}
+
+.entry-row > p{
+    margin: 0;
+}
