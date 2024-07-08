@@ -53,7 +53,7 @@ auth.post('/auth/login', async (req, res) => {
             return res.status(400).json({message: 'Invalid Password'})
         }
     } else {
-        return res.status(400).json({message: 'Invalid Username'})
+        return res.status(400).json({message: 'Invalid Username', userLogin})
     }
 })
 
