@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import MyNav from '../../components/myNav/MyNav';
 import './jobEntryPage.css'
 
 const JobEntryPage = () => {
@@ -33,7 +32,6 @@ const JobEntryPage = () => {
     if (loading) return <div>Loading...</div>;
     return (
         <>
-        <MyNav />
         <div className='entry-row'>
             <p>[Job title] at [company] in [location]</p>
             <p>[link] [date]</p>

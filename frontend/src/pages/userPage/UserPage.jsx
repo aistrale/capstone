@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import MyNav from '../../components/myNav/MyNav';
 import './userPage.css'
 
 const UserPage = () => {
@@ -33,7 +32,6 @@ const UserPage = () => {
     if (loading) return <div>Loading...</div>;
     return (
         <>
-        <MyNav />
         <div className='user-box'>Hello [User]</div>
         </>
     );
