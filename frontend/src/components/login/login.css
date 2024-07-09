@@ -1,0 +1,20 @@
+:root {
+    --link-color: #F6DCAC;
+    --border-color: #01204E;
+}
+
+.login-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+    /* border: 1px solid var(--border-color); */
+}
+
+.login-btn {
+    background-color: var(--border-color);
+    color: var(--link-color);
+    border: none;
+    margin: 0.5em;
+}

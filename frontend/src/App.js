@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
-// import { AuthContext } from './modules/AuthContext';
 
 import MyNav from './components/myNav/MyNav'
 import MyFooter from './components/myFooter/MyFooter'
@@ -13,14 +12,12 @@ import JobEntryPage from './pages/jobEntryPage/JobEntryPage';
 const App = () => {
 
   const [loggedIn, setLoggedIn] = useState(false)
-  // const [AuthUser, setAuthUser] = useState('')
 
-  useEffect // valorozzatre se utente è loggatyo
-  
+  // useEffect // creare uno useeffect per valorizzare se l'utente è loggato o meno
+
 
   return (
     <>
-    {/* <AuthContext.Provider value={[AuthUser, setAuthUser]}> */}
       <MyNav />
       <BrowserRouter>
         <Routes>
@@ -31,7 +28,6 @@ const App = () => {
         </Routes>
       </BrowserRouter>
       <MyFooter />
-      {/* </AuthContext.Provider> */}
     </>
   );
 }
